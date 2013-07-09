@@ -1,6 +1,6 @@
 require 'rubygems'
 require 'gosu'
-require './angle_range'
+require './app/angle_range'
 
 class Shark
 

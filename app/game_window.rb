@@ -1,6 +1,6 @@
 require 'chipmunk'
-require './guy'
-require './shark'
+require './app/guy'
+require './app/shark'
 
 class GameWindow < Gosu::Window
 
