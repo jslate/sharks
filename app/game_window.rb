@@ -31,7 +31,7 @@ class GameWindow < Gosu::Window
     @guy.move_right if button_down?(124)
     @guy.move_down if button_down?(125)
     @guy.move_up if button_down?(126)
-    @shark.move
+    @shark.move(@guy.x, @guy.y)
     distance = Gosu::distance(@guy.x, @guy.y, @shark.x, @shark.y)
     @guy.die if distance < 100
   end

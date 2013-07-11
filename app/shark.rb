@@ -16,9 +16,10 @@ class Shark
     puts 'shark initialize'
   end
 
-  def move
+  def move(guy_x, guy_y)
     deal_with_edge
-    @angle = rand(180) if rand(250) == 1
+    # puts Gosu::angle(guy_x, guy_y, @x, @y)
+    @angle = Gosu::angle(@x, @y, guy_x, guy_y) if rand(100) == 1
     @angle = AngleRange::normalize(@angle)
     @x += Gosu::offset_x(@angle, @speed)
     @y += Gosu::offset_y(@angle, @speed)

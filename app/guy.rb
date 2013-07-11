@@ -6,14 +6,18 @@ class Guy
 
   attr_accessor :alive, :x, :y
 
+  COLORS = ['purple', 'blue', 'red']
+
   def initialize(window, config)
     @window = window
     @x = config[:x]
     @y = config[:y]
-    @image = Gosu::Image.new(@window, "media/#{config[:image]}.png", false)
+    @color = COLORS[0]
+    @image = Gosu::Image.new(@window, "media/#{@color}-fish.png", false)
     @angle = 0
     @speed = config[:speed]
-    @alive = true
+    @lives = 3
+    @time = Time.now
 
     # @shape = shape
     # @shape.body.p = CP::Vec2.new(0.0, 0.0) # position
@@ -22,7 +26,7 @@ class Guy
   end
 
   def draw
-    if @alive
+    if @lives > 0
       @image.draw_rot(@x, @y, ZOrder::Guy, @angle)
     else
       font = Gosu::Font.new(@window, 'Helvetica', 100)
@@ -51,8 +55,15 @@ class Guy
   end
 
   def die
-    @alive = false
+    if Time.now - @time > 3
+      @time = Time.now
+      @lives -= 1 if @lives >= 0
+      @color = COLORS[2 - (@lives-1)]
+      @image = Gosu::Image.new(@window, "media/#{@color}-fish.png", false) if @color
+    end
   end
+
+
 
 
 
