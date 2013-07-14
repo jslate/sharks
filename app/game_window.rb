@@ -1,5 +1,5 @@
 require 'chipmunk'
-require './app/guy'
+require './app/fish'
 require './app/shark'
 
 class GameWindow < Gosu::Window
@@ -8,12 +8,12 @@ class GameWindow < Gosu::Window
   WIDTH = 900
   LEVEL_TIME = 10
 
-  def initialize(guy_config, shark_config)
+  def initialize(fish_config, shark_config)
 
     super(WIDTH, HEIGHT, false)
-    self.caption = "Guys"
+    self.caption = "Fishs"
     @background_image = Gosu::Image.new(self, "media/ocean.png", true)
-    @guy = Guy.new(self, guy_config)
+    @fish = Fish.new(self, fish_config)
     @shark = Shark.new(self, shark_config)
     @start_time = Time.now
 
@@ -21,7 +21,7 @@ class GameWindow < Gosu::Window
 
   def draw
     @background_image.draw(0, 0, ZOrder::Background)
-    @guy.draw
+    @fish.draw
     @shark.draw unless @time_remaining <= 0
 
     font = Gosu::Font.new(self, 'Helvetica', 30)
@@ -30,7 +30,7 @@ class GameWindow < Gosu::Window
   end
 
   def win
-   @guy.won = true
+   @fish.won = true
   end
 
   def update
@@ -43,13 +43,13 @@ class GameWindow < Gosu::Window
       win
     end
 
-    @guy.move_left if button_down?(123)
-    @guy.move_right if button_down?(124)
-    @guy.move_down if button_down?(125)
-    @guy.move_up if button_down?(126)
-    @shark.move(@guy.x, @guy.y)
-    distance = Gosu::distance(@guy.x, @guy.y, @shark.x, @shark.y)
-    @guy.die if distance < 100
+    @fish.move_left if button_down?(123)
+    @fish.move_right if button_down?(124)
+    @fish.move_down if button_down?(125)
+    @fish.move_up if button_down?(126)
+    @shark.move(@fish.x, @fish.y)
+    distance = Gosu::distance(@fish.x, @fish.y, @shark.x, @shark.y)
+    @fish.die if distance < 100
   end
 
   def button_down(id)
@@ -63,6 +63,6 @@ end
 module ZOrder
   Background = 0
   Text = 1
-  Guy = 2
+  Fish = 2
   Shark = 3
 end

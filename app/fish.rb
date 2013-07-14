@@ -2,7 +2,7 @@ require 'rubygems'
 require 'gosu'
 require 'chipmunk'
 
-class Guy
+class Fish
 
   attr_accessor :alive, :x, :y, :won
 
@@ -34,7 +34,7 @@ class Guy
     end
 
     if @lives > 0
-      @image.draw_rot(@x, @y, ZOrder::Guy, @angle)
+      @image.draw_rot(@x, @y, ZOrder::Fish, @angle)
     else
       font = Gosu::Font.new(@window, 'Helvetica', 100)
       font.draw('Game Over', 400, 400, ZOrder::Text, 1, 1, Gosu::Color::RED)
