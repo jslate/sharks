@@ -38,7 +38,7 @@ class Shark
     if @x < 0  && AngleRange.new(180, 0).include?(@angle)
       @angle = 90 - (@angle - 270)
     end
-    if @y < 0 && AngleRange.new(270, 90).include?(@angle)
+    if @y < 100 && AngleRange.new(270, 90).include?(@angle)
       @angle = 180 - (@angle - 360)
     end
     if @y > @window.height && AngleRange.new(90, 270).include?(@angle)
