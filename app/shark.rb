@@ -1,4 +1,4 @@
-require 'rubygems'
+ require 'rubygems'
 require 'gosu'
 require './app/angle_range'
 
